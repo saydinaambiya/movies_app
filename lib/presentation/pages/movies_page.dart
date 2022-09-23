@@ -20,14 +20,14 @@ class MoviesPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Discover',
+                        'Moviez',
                         style: header,
                       ),
                       const SizedBox(
                         height: 4,
                       ),
                       Text(
-                        'Learn from good movies',
+                        'Watch much easier',
                         style: subtitle,
                       ),
                     ],
@@ -35,7 +35,7 @@ class MoviesPage extends StatelessWidget {
                   const Spacer(),
                   Icon(
                     FontAwesomeIcons.magnifyingGlass,
-                    size: 25,
+                    size: 22,
                     color: blackColor,
                   ),
                 ],
@@ -49,8 +49,34 @@ class MoviesPage extends StatelessWidget {
                     height: 30,
                   ),
                   Image.asset('assets/images/featured_image.png'),
-                  Row(
-                    children: [],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 13),
+                    child: Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'John Wick 4',
+                              style: title,
+                            ),
+                            const SizedBox(
+                              height: 4,
+                            ),
+                            Text(
+                              'Action, Crime',
+                              style: subtitle,
+                            )
+                          ],
+                        ),
+                        const Spacer(),
+                        yellowRating(),
+                        yellowRating(),
+                        yellowRating(),
+                        yellowRating(),
+                        yellowRating(),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -58,6 +84,14 @@ class MoviesPage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Icon yellowRating() {
+    return Icon(
+      FontAwesomeIcons.solidStar,
+      size: 22,
+      color: yellowColor,
     );
   }
 }

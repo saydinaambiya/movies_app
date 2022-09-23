@@ -15,7 +15,7 @@ TextStyle header = TextStyle(
 TextStyle title = TextStyle(
   color: blackColor,
   fontSize: 20,
-  fontWeight: FontWeight.normal,
+  fontWeight: FontWeight.w600,
 );
 
 TextStyle subtitle = TextStyle(
