@@ -11,7 +11,7 @@ class MoviesPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(height: 29),
+            const SizedBox(height: 29),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Row(
@@ -70,11 +70,9 @@ class MoviesPage extends StatelessWidget {
                           ],
                         ),
                         const Spacer(),
-                        yellowRating(),
-                        yellowRating(),
-                        yellowRating(),
-                        yellowRating(),
-                        yellowRating(),
+                        Row(children: [
+                          for (var i = 0; i < 5; i++) yellowRating()
+                        ]),
                       ],
                     ),
                   ),

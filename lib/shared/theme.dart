@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 //Color
-Color blackColor = Color(0xFF0D0846);
-Color yellowColor = Color(0xFFFFAB2E);
-Color grayColor = Color(0xFF929292);
+Color blackColor = const Color(0xFF0D0846);
+Color yellowColor = const Color(0xFFFFAB2E);
+Color grayColor = const Color(0xFF929292);
 
 //Font
 TextStyle header = TextStyle(
