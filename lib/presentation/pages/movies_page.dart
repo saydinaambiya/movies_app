@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:movies_app/shared/theme.dart';
@@ -44,11 +45,17 @@ class MoviesPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: featuredSlide('assets/images/featured_image.png',
-                    'John Wick 4', 'Action, Crime', 4),
-              ),
+              CarouselSlider.builder(
+                  itemCount: 2,
+                  itemBuilder: (context, index, realIndex) {
+                    return featuredSlide('assets/images/featured_image.png',
+                        "John Wick 4", "Action, Crime", 5);
+                  },
+                  options: CarouselOptions(
+                    viewportFraction: 0.9,
+                    height: 290,
+                    enableInfiniteScroll: false,
+                  )),
               const SizedBox(height: 30),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -116,42 +123,45 @@ class MoviesPage extends StatelessWidget {
     );
   }
 
-  Column featuredSlide(
+  Container featuredSlide(
       String imgAsset, String movTitle, String movCategory, int movRating) {
-    return Column(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(25),
-          child: Image.asset(
-            imgAsset,
-            fit: BoxFit.cover,
-            width: double.infinity,
-          ),
-        ),
-        const SizedBox(height: 19),
-        Row(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  movTitle,
-                  style: title,
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  movCategory,
-                  style: subtitle,
-                )
-              ],
+    return Container(
+      padding: const EdgeInsets.only(right: 20),
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(25),
+            child: Image.asset(
+              imgAsset,
+              fit: BoxFit.cover,
+              width: double.infinity,
             ),
-            const Spacer(),
-            ratingMovie(movRating),
-          ],
-        ),
-      ],
+          ),
+          const SizedBox(height: 19),
+          Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    movTitle,
+                    style: title,
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    movCategory,
+                    style: subtitle,
+                  )
+                ],
+              ),
+              const Spacer(),
+              ratingMovie(movRating),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
