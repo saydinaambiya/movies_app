@@ -8,107 +8,175 @@ class MoviesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 29),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Moviez',
-                        style: header,
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        'Watch much easier',
-                        style: subtitle,
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                  Icon(
-                    FontAwesomeIcons.magnifyingGlass,
-                    size: 22,
-                    color: blackColor,
-                  ),
-                ],
+      backgroundColor: backgroundColor,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            children: [
+              const SizedBox(height: 29),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Moviez',
+                          style: header,
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        Text(
+                          'Watch much easier',
+                          style: subtitle,
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                    Icon(
+                      FontAwesomeIcons.magnifyingGlass,
+                      size: 22,
+                      color: blackColor,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            featuredSlide('assets/images/featured_image.png', 'John Wick 4',
-                'Action, Crime', 5),
-          ],
+              const SizedBox(height: 30),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: featuredSlide('assets/images/featured_image.png',
+                    'John Wick 4', 'Action, Crime', 4),
+              ),
+              const SizedBox(height: 30),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          'From Disney',
+                          style: title,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    movieCard("assets/images/mulan_image.png", "Mulan Session",
+                        "History, War", 3),
+                    const SizedBox(height: 30),
+                    movieCard(
+                      "assets/images/bnb_image.png",
+                      "Beauty & Beast",
+                      "Sci-Fiction",
+                      5,
+                    ),
+                    const SizedBox(height: 30),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Padding featuredSlide(
-      String imgAsset, String movTitle, String movCategory, int movRating) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 13),
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 30,
+  Row movieCard(String movieImage, String movieTitle, String movieCategory,
+      int movieRating) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Image.asset(
+            movieImage,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 13),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(25),
-              child: Image.asset(
-                imgAsset,
-                fit: BoxFit.cover,
-                width: double.infinity,
-              ),
+        ),
+        const SizedBox(width: 20),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 15),
+            Text(
+              movieTitle,
+              style: title,
             ),
+            const SizedBox(height: 5),
+            Text(
+              movieCategory,
+              style: subtitle,
+            ),
+            const SizedBox(height: 20),
+            ratingMovie(movieRating),
+          ],
+        )
+      ],
+    );
+  }
+
+  Column featuredSlide(
+      String imgAsset, String movTitle, String movCategory, int movRating) {
+    return Column(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(25),
+          child: Image.asset(
+            imgAsset,
+            fit: BoxFit.cover,
+            width: double.infinity,
           ),
-          const SizedBox(height: 19),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 13),
-            child: Row(
+        ),
+        const SizedBox(height: 19),
+        Row(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      movTitle,
-                      style: title,
-                    ),
-                    const SizedBox(
-                      height: 4,
-                    ),
-                    Text(
-                      movCategory,
-                      style: subtitle,
-                    )
-                  ],
+                Text(
+                  movTitle,
+                  style: title,
                 ),
-                const Spacer(),
-                Row(children: [
-                  for (var i = 0; i < movRating; i++) yellowRating()
-                ]),
+                const SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  movCategory,
+                  style: subtitle,
+                )
               ],
             ),
-          ),
-          const SizedBox(height: 30),
-        ],
-      ),
+            const Spacer(),
+            ratingMovie(movRating),
+          ],
+        ),
+      ],
     );
+  }
+
+  Stack ratingMovie(int movRating) {
+    return Stack(children: [
+      Row(
+        children: [for (var i = 0; i < 5; i++) greyRating()],
+      ),
+      Row(children: [for (var i = 0; i < movRating; i++) yellowRating()])
+    ]);
   }
 
   Icon yellowRating() {
     return Icon(
-      // FontAwesomeIcons.solidStar,
       Icons.star,
       size: 22,
       color: yellowColor,
+    );
+  }
+
+  Icon greyRating() {
+    return Icon(
+      Icons.star,
+      size: 22,
+      color: greyColor,
     );
   }
 }

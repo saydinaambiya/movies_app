@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 //Color
 Color blackColor = const Color(0xFF0D0846);
 Color yellowColor = const Color(0xFFFFAB2E);
-Color grayColor = const Color(0xFF929292);
+Color greyColor = const Color(0xFF929292);
+Color backgroundColor = const Color(0xFFE5E5E5);
 
 //Font
 TextStyle header = TextStyle(
@@ -19,7 +20,7 @@ TextStyle title = TextStyle(
 );
 
 TextStyle subtitle = TextStyle(
-  color: grayColor,
+  color: greyColor,
   fontSize: 16,
   fontWeight: FontWeight.w400,
 );
