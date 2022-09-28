@@ -41,53 +41,72 @@ class MoviesPage extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 13),
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Image.asset('assets/images/featured_image.png'),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 13),
-                    child: Row(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'John Wick 4',
-                              style: title,
-                            ),
-                            const SizedBox(
-                              height: 4,
-                            ),
-                            Text(
-                              'Action, Crime',
-                              style: subtitle,
-                            )
-                          ],
-                        ),
-                        const Spacer(),
-                        Row(children: [
-                          for (var i = 0; i < 5; i++) yellowRating()
-                        ]),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            featuredSlide('assets/images/featured_image.png', 'John Wick 4',
+                'Action, Crime', 5),
           ],
         ),
       ),
     );
   }
 
+  Padding featuredSlide(
+      String imgAsset, String movTitle, String movCategory, int movRating) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 13),
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 30,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 13),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: Image.asset(
+                imgAsset,
+                fit: BoxFit.cover,
+                width: double.infinity,
+              ),
+            ),
+          ),
+          const SizedBox(height: 19),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 13),
+            child: Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      movTitle,
+                      style: title,
+                    ),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Text(
+                      movCategory,
+                      style: subtitle,
+                    )
+                  ],
+                ),
+                const Spacer(),
+                Row(children: [
+                  for (var i = 0; i < movRating; i++) yellowRating()
+                ]),
+              ],
+            ),
+          ),
+          const SizedBox(height: 30),
+        ],
+      ),
+    );
+  }
+
   Icon yellowRating() {
     return Icon(
-      FontAwesomeIcons.solidStar,
+      // FontAwesomeIcons.solidStar,
+      Icons.star,
       size: 22,
       color: yellowColor,
     );
