@@ -38,9 +38,12 @@ class MoviesPage extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-                    Icon(
-                      FontAwesomeIcons.magnifyingGlass,
-                      size: 22,
+                    IconButton(
+                      onPressed: (() {
+                        Navigator.pushNamed(context, '/searchpage');
+                      }),
+                      icon: const Icon(FontAwesomeIcons.magnifyingGlass),
+                      iconSize: 22,
                       color: blackColor,
                     ),
                   ],

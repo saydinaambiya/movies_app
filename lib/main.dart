@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/presentation/pages/movies_page.dart';
+import 'package:movies_app/presentation/pages/search_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,9 +12,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MoviesPage(),
+      title: 'Moviez App',
+      initialRoute: '/',
+      routes: <String, WidgetBuilder>{
+        '/': (context) => const MoviesPage(),
+        '/searchpage': (context) => const SearchPage(),
+      },
     );
   }
 }

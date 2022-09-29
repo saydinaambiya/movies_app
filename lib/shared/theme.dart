@@ -5,6 +5,8 @@ Color blackColor = const Color(0xFF0D0846);
 Color yellowColor = const Color(0xFFFFAB2E);
 Color greyColor = const Color(0xFF929292);
 Color backgroundColor = const Color(0xFFE5E5E5);
+Color gradientColor1 = const Color(0xFFFBFBFD);
+Color gradientColor2 = const Color(0xFFF0F1F6);
 
 //Font
 TextStyle header = TextStyle(
