@@ -61,7 +61,7 @@ class MoviesPage extends StatelessWidget {
                   },
                   options: CarouselOptions(
                     viewportFraction: 0.9,
-                    height: 290,
+                    height: 295,
                     enableInfiniteScroll: false,
                   )),
               const SizedBox(height: 30),
