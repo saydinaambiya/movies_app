@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:movies_app/presentation/widgets/featured_movie.dart';
+import 'package:movies_app/presentation/widgets/movie_card.dart';
 import 'package:movies_app/shared/theme.dart';
 
 class MoviesPage extends StatelessWidget {
@@ -48,8 +50,11 @@ class MoviesPage extends StatelessWidget {
               CarouselSlider.builder(
                   itemCount: 2,
                   itemBuilder: (context, index, realIndex) {
-                    return featuredSlide('assets/images/featured_image.png',
-                        "John Wick 4", "Action, Crime", 5);
+                    return FeaturedMovie(
+                        imgAsset: "assets/images/featured_image.png",
+                        movTitle: "John Wick 4",
+                        movCategory: "Action, Crime",
+                        movRating: 5);
                   },
                   options: CarouselOptions(
                     viewportFraction: 0.9,
@@ -70,15 +75,17 @@ class MoviesPage extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 20),
-                    movieCard("assets/images/mulan_image.png", "Mulan Session",
-                        "History, War", 3),
+                    MovieCard(
+                        movieImage: "assets/images/mulan_image.png",
+                        movieTitle: "Mulan Session",
+                        movieCategory: "History, War",
+                        movieRating: 3),
                     const SizedBox(height: 30),
-                    movieCard(
-                      "assets/images/bnb_image.png",
-                      "Beauty & Beast",
-                      "Sci-Fiction",
-                      5,
-                    ),
+                    MovieCard(
+                        movieImage: "assets/images/bnb_image.png",
+                        movieTitle: "Beauty & Beast",
+                        movieCategory: "Sci-Fiction",
+                        movieRating: 5),
                     const SizedBox(height: 30),
                   ],
                 ),
@@ -87,106 +94,6 @@ class MoviesPage extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  Row movieCard(String movieImage, String movieTitle, String movieCategory,
-      int movieRating) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: Image.asset(
-            movieImage,
-          ),
-        ),
-        const SizedBox(width: 20),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 15),
-            Text(
-              movieTitle,
-              style: title,
-            ),
-            const SizedBox(height: 5),
-            Text(
-              movieCategory,
-              style: subtitle,
-            ),
-            const SizedBox(height: 20),
-            ratingMovie(movieRating),
-          ],
-        )
-      ],
-    );
-  }
-
-  Container featuredSlide(
-      String imgAsset, String movTitle, String movCategory, int movRating) {
-    return Container(
-      padding: const EdgeInsets.only(right: 20),
-      child: Column(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(25),
-            child: Image.asset(
-              imgAsset,
-              fit: BoxFit.cover,
-              width: double.infinity,
-            ),
-          ),
-          const SizedBox(height: 19),
-          Row(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    movTitle,
-                    style: title,
-                  ),
-                  const SizedBox(
-                    height: 4,
-                  ),
-                  Text(
-                    movCategory,
-                    style: subtitle,
-                  )
-                ],
-              ),
-              const Spacer(),
-              ratingMovie(movRating),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Stack ratingMovie(int movRating) {
-    return Stack(children: [
-      Row(
-        children: [for (var i = 0; i < 5; i++) greyRating()],
-      ),
-      Row(children: [for (var i = 0; i < movRating; i++) yellowRating()])
-    ]);
-  }
-
-  Icon yellowRating() {
-    return Icon(
-      Icons.star,
-      size: 22,
-      color: yellowColor,
-    );
-  }
-
-  Icon greyRating() {
-    return Icon(
-      Icons.star,
-      size: 22,
-      color: greyColor,
     );
   }
 }
