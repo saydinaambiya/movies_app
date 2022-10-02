@@ -22,12 +22,17 @@ class FeaturedMovie extends StatelessWidget {
       padding: const EdgeInsets.only(right: 20),
       child: Column(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(25),
-            child: Image.asset(
-              imgAsset,
-              fit: BoxFit.cover,
-              width: double.infinity,
+          Card(
+            elevation: 5,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: Image.asset(
+                imgAsset,
+                fit: BoxFit.cover,
+                width: double.infinity,
+              ),
             ),
           ),
           const SizedBox(height: 19),
